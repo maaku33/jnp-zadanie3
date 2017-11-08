@@ -14,4 +14,4 @@ test: $(OBJS) sejf_test1.o
 	$(CXX) $(CXXFLAGS) -c $<
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) *.o
