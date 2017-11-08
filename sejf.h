@@ -39,7 +39,7 @@ class Sejf {
     
     Sejf& operator-= (int ile);
     
-    char operator[] (unsigned indeks) const;
+    char operator[] (unsigned indeks);
     
     Kontroler& kontroler() {
         k = Kontroler();

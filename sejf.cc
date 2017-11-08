@@ -58,13 +58,13 @@ Sejf& Sejf::operator-= (int ile) {
     return *this;
 }
     
-char Sejf::operator[] (unsigned indeks) const {
-    if(indeks < zawartosc.size())
+char Sejf::operator[] (unsigned indeks) {
+    if(indeks >= zawartosc.size())
         return -1;
     if(dostepy == 0) {
-        //wlamanie = true;
+        wlamanie = true;
         return -1;
     }
-    //dostepy--;
+    dostepy--;
     return zawartosc[indeks];
 }
