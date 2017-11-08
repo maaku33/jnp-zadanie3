@@ -13,10 +13,10 @@ class Sejf {
     class Kontroler {
     
         public:
-            explicit operator bool() const {
-                //TODO
-                return true;
-            }
+        explicit operator bool() const {
+            //TODO
+            return true;
+        }
     
     };
     private:
@@ -24,8 +24,12 @@ class Sejf {
     
     public:
     Sejf (const std::string& napis, unsigned liczba);
+
+    Sejf (const std::string& napis);
     
     Sejf (std::string&& napis, unsigned liczba);
+
+    Sejf (std::string&& napis);
 
     Sejf (Sejf&& s);
         
@@ -39,7 +43,7 @@ class Sejf {
     
     Sejf& operator-= (int ile);
     
-    char operator[] (unsigned indeks);
+    short int operator[] (unsigned indeks);
     
     Kontroler& kontroler() {
         k = Kontroler();
