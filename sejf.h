@@ -9,20 +9,29 @@ class Sejf {
     bool zmanipulowany;
     bool wlamanie;
     
-    public:
+public:
     class Kontroler {
-    
+        friend class Sejf;
+
+        const Sejf& sejf;
+
+        Kontroler(const Sejf& s) : sejf(s) {}
+
         public:
         explicit operator bool() const {
-            //TODO
-            return true;
+            return sejf.dostepy > 0;
         }
-    
+        
+        bool operator! () const {
+            return !(this);
+        }
+        
     };
-    private:
-    Kontroler k;
-    
-    public:
+
+private:
+    Kontroler k = Kontroler(*this); // sprawdić tą inicjalizację
+
+public:
     Sejf (const std::string& napis, unsigned liczba);
 
     Sejf (const std::string& napis);
@@ -46,7 +55,6 @@ class Sejf {
     short int operator[] (unsigned indeks);
     
     Kontroler& kontroler() {
-        k = Kontroler();
         return k;
     }
             

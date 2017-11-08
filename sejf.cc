@@ -45,7 +45,7 @@ Sejf& Sejf::operator= (Sejf&& s) {
     zawartosc = std::move(s.zawartosc);
     dostepy = s.dostepy;
     zmanipulowany = s.zmanipulowany;
-    k = s.k;
+    // k = s.k;
     wlamanie = s.wlamanie;
     return *this;
 }
