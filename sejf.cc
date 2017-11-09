@@ -84,3 +84,13 @@ short int Sejf::operator[] (unsigned indeks) {
     dostepy--;
     return (short int) zawartosc[indeks];
 }
+
+std::string Sejf::Kontroler::daj_napis() const {
+    if(sejf.wlamanie && sejf.zmanipulowany)
+        return WLAMANIE + MANIPULACJA; //nie wiem co dokładnie wypisać w tej sytuacji
+    if(sejf.wlamanie)
+        return WLAMANIE;
+    if(sejf.zmanipulowany)
+        return MANIPULACJA;
+    return OK;
+} 

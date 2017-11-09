@@ -15,7 +15,13 @@ public:
 
         const Sejf& sejf;
 
+        const std::string OK = "OK\n";
+        const std::string WLAMANIE = "ALARM: WLAMANIE\n";
+        const std::string MANIPULACJA = "ALARM: ZMANIPULOWANY\n";
+
         Kontroler(const Sejf& s) : sejf(s) {}
+
+        std::string daj_napis() const; 
 
         public:
         explicit operator bool() const {
@@ -25,6 +31,11 @@ public:
         bool operator! () const {
             return !(this);
         }
+
+        friend std::ostream& operator<< (std::ostream& os, Sejf::Kontroler const& k) {
+            return os << k.daj_napis();
+        }
+        
         
     };
 
@@ -59,5 +70,7 @@ public:
     }
             
 };
+
+
 
 #endif /* __SEJF_H__ */
