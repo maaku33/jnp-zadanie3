@@ -19,7 +19,7 @@ Sejf::Sejf (const std::string& napis)
     , wlamanie(false)
     {}
 
-    
+
 Sejf::Sejf (std::string&& napis, unsigned liczba)
     : zawartosc(std::move(napis))
     , dostepy(liczba)
@@ -40,44 +40,43 @@ Sejf::Sejf (Sejf&& s)
     , zmanipulowany(s.zmanipulowany)
     , wlamanie(false)
     {}
-    
+
 Sejf& Sejf::operator= (Sejf&& s) {
     zawartosc = std::move(s.zawartosc);
     dostepy = s.dostepy;
     zmanipulowany = s.zmanipulowany;
-    // k = s.k;
     wlamanie = s.wlamanie;
     return *this;
 }
 
 Sejf& Sejf::operator+= (int ile) {
-    if(dostepy + ile >= dostepy) {
+    if (dostepy + ile >= dostepy) {
         dostepy += ile;
         zmanipulowany = true;
     }
     return *this;
 }
-    
+
 Sejf& Sejf::operator*= (int ile) {
-    if(dostepy * ile >= dostepy) {
+    if (dostepy * ile >= dostepy) {
         dostepy *= ile;
         zmanipulowany = true;
     }
     return *this;
 }
-    
+
 Sejf& Sejf::operator-= (int ile) {
-    if(dostepy - ile <= dostepy) {
+    if (dostepy - ile <= dostepy) {
         dostepy -= ile;
         zmanipulowany = true;
     }
     return *this;
 }
-    
+
 short int Sejf::operator[] (unsigned indeks) {
-    if(indeks >= zawartosc.size())
+    if (indeks >= zawartosc.size())
         return -1;
-    if(dostepy == 0) {
+    if (dostepy == 0) {
         wlamanie = true;
         return -1;
     }
@@ -86,11 +85,11 @@ short int Sejf::operator[] (unsigned indeks) {
 }
 
 std::string Sejf::Kontroler::daj_napis() const {
-    if(sejf.wlamanie && sejf.zmanipulowany)
+    if (sejf.wlamanie && sejf.zmanipulowany)
         return WLAMANIE + MANIPULACJA; //nie wiem co dokładnie wypisać w tej sytuacji
-    if(sejf.wlamanie)
+    if (sejf.wlamanie)
         return WLAMANIE;
-    if(sejf.zmanipulowany)
+    if (sejf.zmanipulowany)
         return MANIPULACJA;
     return OK;
-} 
+}

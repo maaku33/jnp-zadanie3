@@ -8,7 +8,7 @@ class Sejf {
     unsigned dostepy;
     bool zmanipulowany;
     bool wlamanie;
-    
+
 public:
     class Kontroler {
         friend class Sejf;
@@ -21,56 +21,45 @@ public:
 
         Kontroler(const Sejf& s) : sejf(s) {}
 
-        std::string daj_napis() const; 
+        std::string daj_napis() const;
 
         public:
         explicit operator bool() const {
             return sejf.dostepy > 0;
         }
-        
+
         bool operator! () const {
-            return !(this);
+            return sejf.dostepy <= 0;
         }
 
-        friend std::ostream& operator<< (std::ostream& os, Sejf::Kontroler const& k) {
+        friend std::ostream& operator<< (std::ostream& os, Kontroler const& k) {
             return os << k.daj_napis();
         }
-        
-        
+
     };
 
 private:
-    Kontroler k = Kontroler(*this); // sprawdić tą inicjalizację
+    Kontroler k = Kontroler(*this);
 
 public:
     Sejf (const std::string& napis, unsigned liczba);
-
     Sejf (const std::string& napis);
-    
     Sejf (std::string&& napis, unsigned liczba);
-
     Sejf (std::string&& napis);
-
     Sejf (Sejf&& s);
-        
+
     Sejf& operator= (const Sejf&) = delete;
-    
     Sejf& operator= (Sejf&& s);
-    
     Sejf& operator+= (int ile);
-    
     Sejf& operator*= (int ile);
-    
     Sejf& operator-= (int ile);
-    
+
     short int operator[] (unsigned indeks);
-    
+
     Kontroler& kontroler() {
         return k;
     }
-            
+
 };
-
-
 
 #endif /* __SEJF_H__ */
