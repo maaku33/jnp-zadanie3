@@ -3,8 +3,6 @@
 #include <utility>
 #include <cassert>
 
-const unsigned DOMYSLNE_DOSTEPY = 42;
-
 Sejf::Sejf (const std::string& napis, unsigned liczba)
     : zawartosc(napis)
     , dostepy(liczba)
@@ -12,24 +10,9 @@ Sejf::Sejf (const std::string& napis, unsigned liczba)
     , wlamanie(false)
     {}
 
-Sejf::Sejf (const std::string& napis)
-    : zawartosc(napis)
-    , dostepy(DOMYSLNE_DOSTEPY)
-    , zmanipulowany(false)
-    , wlamanie(false)
-    {}
-
-
 Sejf::Sejf (std::string&& napis, unsigned liczba)
     : zawartosc(std::move(napis))
     , dostepy(liczba)
-    , zmanipulowany(false)
-    , wlamanie(false)
-    {}
-
-Sejf::Sejf (std::string&& napis)
-    : zawartosc(std::move(napis))
-    , dostepy(DOMYSLNE_DOSTEPY)
     , zmanipulowany(false)
     , wlamanie(false)
     {}
@@ -49,7 +32,7 @@ Sejf& Sejf::operator= (Sejf&& s) {
     return *this;
 }
 
-Sejf& Sejf::operator+= (int ile) {
+Sejf& Sejf::operator+= (unsigned ile) {
     if (dostepy + ile >= dostepy) {
         dostepy += ile;
         zmanipulowany = true;
@@ -57,7 +40,7 @@ Sejf& Sejf::operator+= (int ile) {
     return *this;
 }
 
-Sejf& Sejf::operator*= (int ile) {
+Sejf& Sejf::operator*= (unsigned ile) {
     if (dostepy * ile >= dostepy) {
         dostepy *= ile;
         zmanipulowany = true;
@@ -65,7 +48,7 @@ Sejf& Sejf::operator*= (int ile) {
     return *this;
 }
 
-Sejf& Sejf::operator-= (int ile) {
+Sejf& Sejf::operator-= (unsigned ile) {
     if (dostepy - ile <= dostepy) {
         dostepy -= ile;
         zmanipulowany = true;
@@ -73,7 +56,7 @@ Sejf& Sejf::operator-= (int ile) {
     return *this;
 }
 
-short int Sejf::operator[] (unsigned indeks) {
+int16_t Sejf::operator[] (size_t indeks) {
     if (indeks >= zawartosc.size())
         return -1;
     if (dostepy == 0) {
@@ -81,12 +64,10 @@ short int Sejf::operator[] (unsigned indeks) {
         return -1;
     }
     dostepy--;
-    return (short int) zawartosc[indeks];
+    return (int16_t)(unsigned char) zawartosc[indeks];
 }
 
 std::string Sejf::Kontroler::daj_napis() const {
-    if (sejf.wlamanie && sejf.zmanipulowany)
-        return WLAMANIE + MANIPULACJA; //nie wiem co dokładnie wypisać w tej sytuacji
     if (sejf.wlamanie)
         return WLAMANIE;
     if (sejf.zmanipulowany)

@@ -4,6 +4,8 @@
 #include <string>
 
 class Sejf {
+    static const unsigned DOMYSLNE_DOSTEPY = 42;
+
     std::string zawartosc;
     unsigned dostepy;
     bool zmanipulowany;
@@ -42,21 +44,19 @@ private:
     Kontroler k = Kontroler(*this);
 
 public:
-    Sejf (const std::string& napis, unsigned liczba);
-    Sejf (const std::string& napis);
-    Sejf (std::string&& napis, unsigned liczba);
-    Sejf (std::string&& napis);
+    Sejf (const std::string& napis, unsigned liczba = DOMYSLNE_DOSTEPY);
+    Sejf (std::string&& napis, unsigned liczba = DOMYSLNE_DOSTEPY);
     Sejf (Sejf&& s);
 
     Sejf& operator= (const Sejf&) = delete;
     Sejf& operator= (Sejf&& s);
-    Sejf& operator+= (int ile);
-    Sejf& operator*= (int ile);
-    Sejf& operator-= (int ile);
+    Sejf& operator+= (unsigned ile);
+    Sejf& operator*= (unsigned ile);
+    Sejf& operator-= (unsigned ile);
 
-    short int operator[] (unsigned indeks);
+    int16_t operator[] (size_t indeks);
 
-    Kontroler& kontroler() {
+    const Kontroler& kontroler() const {
         return k;
     }
 

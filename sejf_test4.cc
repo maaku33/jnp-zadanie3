@@ -7,6 +7,7 @@ int main() {
 
     assert(s[0] == 'a');
     assert(s[1] == 255);
+    // assert((int)'\xff' == 255);
     assert(s[1] == (int)((unsigned char) -1));
     assert(s[1] == -1);
     assert(s[1] != (int)((unsigned char) -1));
