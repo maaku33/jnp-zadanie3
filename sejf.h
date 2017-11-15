@@ -46,6 +46,7 @@ private:
 public:
     Sejf (const std::string& napis, unsigned liczba = DOMYSLNE_DOSTEPY);
     Sejf (std::string&& napis, unsigned liczba = DOMYSLNE_DOSTEPY);
+    Sejf (const Sejf&) = delete;
     Sejf (Sejf&& s);
 
     Sejf& operator= (const Sejf&) = delete;
