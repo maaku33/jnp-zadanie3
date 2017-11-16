@@ -2,6 +2,8 @@
 #define __SEJF_H__
 
 #include <string>
+#include <cstdint>
+#include <cstddef>
 
 class Sejf {
     static const unsigned DOMYSLNE_DOSTEPY = 42;
@@ -37,13 +39,8 @@ public:
         friend std::ostream& operator<< (std::ostream& os, Kontroler const& k) {
             return os << k.daj_napis();
         }
-
     };
 
-private:
-    Kontroler k = Kontroler(*this);
-
-public:
     Sejf (const std::string& napis, unsigned liczba = DOMYSLNE_DOSTEPY);
     Sejf (std::string&& napis, unsigned liczba = DOMYSLNE_DOSTEPY);
     Sejf (const Sejf&) = delete;
@@ -57,8 +54,8 @@ public:
 
     int16_t operator[] (size_t indeks);
 
-    const Kontroler& kontroler() const {
-        return k;
+    const Kontroler kontroler() const {
+        return Kontroler(*this);
     }
 
 };

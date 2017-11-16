@@ -1,7 +1,6 @@
 #include "sejf.h"
 #include <iostream>
 #include <utility>
-#include <cassert>
 
 Sejf::Sejf (const std::string& napis, unsigned liczba)
     : zawartosc(napis)
